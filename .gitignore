@@ -1,0 +1,14 @@
+#ansible
+yc_compute.yml
+
+#Packer
+variables.json
+
+#Terraform
+
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/
