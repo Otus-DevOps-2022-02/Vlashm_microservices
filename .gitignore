@@ -12,3 +12,10 @@ variables.json
 *.tfstate.backup
 *.tfvars
 .terraform/
+
+docker-compose.yml
+build_info.txt
+prometheus/
+
+## python specific
+*.pyc
