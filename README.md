@@ -1,6 +1,25 @@
 # Vlashm_microservices
 Vlashm microservices repository
 
+## Домашнее задание 15
+
+- Выполнены задания по работе с сетями *Docker*
+- Установлен *Docker-compose* и выполнена сборка образов приложения с его помощью.
+- Внесены изменения в *docker-compose.yml* под кейс с множеством сетей, сетевых алиасов
+- Параметризированны:
+    - Логин пользователя в *Docker Hub*
+    - Порт приложения
+    - Версии приложений
+    - Драйвер сетей
+- Базовое имя проекта берется из директории, в которой находится файл *docker-compose.yml*. Изменить имя проекта можно, запустив *docker-compose* с флагом *-p* (или *--project-name*) или задав переменную окружения *COMPOSE_PROJECT_NAME*
+
+### Задвние со *
+
+Создан файл *docker-compose.override.yml* внесены изменения:
+- Чтобы изменять код каждого из приложений, не выполняя сборку образа дректорию с кодом необходимо подключить к *volume*
+- Чтобы запускать puma для руби приложений в дебаг режиме с двумя воркерами добавлена команда *command*.
+
+
 ## Домашнее задание 14
 
 - Приложение разбито на несколько контейнеров
@@ -23,10 +42,8 @@ Vlashm microservices repository
     docker run -d --network=reddit \
     --network-alias=comment_new \
     --env COMMENT_DATABASE_HOST='comment_db_new' \
-    vlashm/comment:1.0
-
-    docker run -d --network=reddit \
-    --env POST_SERVICE_HOST='post_new' \
+    vlashm/commentdocker network create reddit
+docker volume create reddit_db='post_new' \
     --env COMMENT_SERVICE_HOST='comment_new' \
     -p 9292:9292 \
     vlashm/ui:1.0
