@@ -51,7 +51,7 @@ start_docker_image:
   before_script:
     - cd reddit
   script:
-    - docker run --name reddit-$CI_COMMIT_REF_NAME -d -p 9292:9292 reddit:$CI_COMMIT_REF_NAME
+    - docker run --name reddit-$CI_COMMIT_SHORT_SHA -d -p 9292:9292 reddit:$CI_COMMIT_REF_NAME
   environment:
     name: branch/$CI_COMMIT_REF_NAME
     url: http://51.250.90.77:9292
