@@ -12,4 +12,4 @@ COPY mongod.conf /etc/mongod.conf
 
 RUN cd /reddit && rm Gemfile.lock && bundle install && chmod 0777 start.sh
 
-CMD ["start.sh"]
+CMD ["./start.sh"]
