@@ -3,7 +3,17 @@ Vlashm microservices repository
 
 ## Домашнее задание 16
 
+- Создана конфигурвция *terraform* для поднятия ВМ
+- Написан плэйбук *ansible* для установки *Docker* на ВМ
+- Запущен контейнер *gitlab-ce*. Пароль root для доступа получается выполнением на ВМ команды `sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password`
+- Выполнены все шаги основного ДЗ
 
+### Задание со *
+
+- Добавлен плэйбук для поднятия *Gitlab* на ВМ, также добавлен плэйбук для получения пароля root
+- Добавлен плэйбук для запуска и регистрации *Gitlab-Runner*
+- В пайплайн добавлены *build_docker_image* для сборки Docker образа с приложением и *start_docker_image* для запуска контейнера
+- Настроено оповещение в Slack. https://app.slack.com/client/T6HR0TUP3/C037B9DPHS7
 
 ## Домашнее задание 15
 
