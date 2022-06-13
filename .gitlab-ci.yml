@@ -22,8 +22,6 @@ build_job:
 build_docker_image:
   stage: build
   image: docker:stable
-  services:
-    - name: docker:dind
   before_script:
     - cd reddit
   script:
