@@ -1,0 +1,15 @@
+---
+- name: Install Gitlab
+  hosts: all
+  become: true
+  tasks:
+
+    - name: Get root password
+      community.docker.docker_container_exec:
+        container: gitlab
+        command: "grep 'Password:' /etc/gitlab/initial_root_password"
+      register: root_pass
+
+    - name: Print password
+      ansible.builtin.debug:
+        msg: "{{ root_pass.stdout }}"
