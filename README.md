@@ -1,6 +1,19 @@
 # Vlashm_microservices
 Vlashm microservices repository
 
+## Домашнее задание 17
+
+- Познакомился с работой *Prometheus*
+- Создан *Dockerfile* и файл конфигурации *Prometheus*
+- Файл *docker-compose.yml* доработан для работы с *Prometheus*
+- Образы загружены в https://hub.docker.com/u/vlashm
+
+### Задание со *
+
+- В *Prometheus* добавлен мониторинг *MongoDB*
+- В *Prometheus* добавлен мониторинг сервисов comment, post, ui с помощью *Blackbox*
+- Добавлен *Makefile* для сборки и отправки образов, запуска и остановки приложения
+
 ## Домашнее задание 16
 
 - Создана конфигурвция *terraform* для поднятия ВМ
