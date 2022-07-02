@@ -1,6 +1,36 @@
 # Vlashm_microservices
 Vlashm microservices repository
 
+## Домашнее задание 18
+
+- Обновлен код приложений
+- Собраны образы и отправлены в *Dockerhub*
+- Создан файл *docker/docker-compose-logging.yml*
+- Создан файл *logging/fluentd/Dockerfile* для сборки образа *Fluentd* с нужной нам конфигурацией
+- Создан файл *logging/fluentd/fluent.conf* с конфигурацией *Fluentd*
+- Доработан файл *docker/docker-compose.yml*
+- В конфигурацию *Fluentd* добавлены фильтры для:
+    - Структурированных логов приложения *POST*
+    - Неструктурированных логов приложения *UI*
+- Доработан файл *docker/docker-compose-logging.yml* сбора трейсов
+
+### Задание со *
+
+- Добавлен фильтр для ещё одного формата логов:
+
+        <filter service.ui>
+            @type parser
+            format grok
+            grok_pattern service=%{WORD:service} \| event=%{WORD:event} \| path=%{URIPATH:path} \| request_id=%{UUID:request_id} \| remote_addr=%{IP:remote_addr} \| method=%{GREEDYDATA:method} \| response_status=%{INT:response_status}
+            key_name message
+            reserve_data true
+        </filter>
+
+- Загружено багованное приложение в директорию *src-bugged*:
+    - Анализ трейсов *Zipkin* показал, что задержка происходит при обращении к приложению *POST* из-за изменившихся IP и Порта.
+    - Внесены изменения в *docker/docker-compose.yml* для устранения ошибки.
+    - Дальнейший анализ показал, что по той же причине возникает ошибка при обращении к приложнению *COMMENT*. Так же внесены изменения для устранения этой ошибки
+
 ## Домашнее задание 17
 
 - Познакомился с работой *Prometheus*
