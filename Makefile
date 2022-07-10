@@ -21,12 +21,29 @@ build_ui: ## Build UI
 build_post: ## Build Post
 	@echo `git show --format="%h" HEAD | head -1` > $(CURDIR)/src/post-py/build_info.txt
 	@echo `git rev-parse --abbrev-ref HEAD` >> $(CURDIR)/src/post-py/build_info.txt
-	docker build -t $(USER_NAME)/post src/post-py
+	docker build -t $(USER_NAME)/post $(CURDIR)/src/post-py
 
 build_comment: ## Build Comment
 	@echo `git show --format="%h" HEAD | head -1` > $(CURDIR)/src/comment/build_info.txt
 	@echo `git rev-parse --abbrev-ref HEAD` >> $(CURDIR)/src/comment/build_info.txt
 	docker build -t $(USER_NAME)/comment $(CURDIR)/src/comment
+
+build_all_bugged: build_ui_bugged build_comment_bugged build_post_bugged  ## Build all bugged images
+
+build_ui_bugged: ## Build bugged UI
+	@echo `git show --format="%h" HEAD | head -1` > $(CURDIR)/src-bugged/ui/build_info.txt
+	@echo `git rev-parse --abbrev-ref HEAD` >> $(CURDIR)/src-bugged/ui/build_info.txt
+	docker build -t $(USER_NAME)/ui:bugged $(CURDIR)/src-bugged/ui
+
+build_post_bugged: ## Build bugged Post
+	@echo `git show --format="%h" HEAD | head -1` > $(CURDIR)/src-bugged/post-py/build_info.txt
+	@echo `git rev-parse --abbrev-ref HEAD` >> $(CURDIR)/src-bugged/post-py/build_info.txt
+	docker build -t $(USER_NAME)/post:bugged $(CURDIR)/src-bugged/post-py
+
+build_comment_bugged: ## Build bugged Comment
+	@echo `git show --format="%h" HEAD | head -1` > $(CURDIR)/src-bugged/comment/build_info.txt
+	@echo `git rev-parse --abbrev-ref HEAD` >> $(CURDIR)/src-bugged/comment/build_info.txt
+	docker build -t $(USER_NAME)/comment:bugged $(CURDIR)/src-bugged/comment
 
 push_all: push_prometheus push_ui push_post push_comment ## Push all images
 
