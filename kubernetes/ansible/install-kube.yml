@@ -1,0 +1,78 @@
+---
+- name: Install Kubernetes
+  hosts: all
+  become: true
+  tasks:
+
+    - name: Add Kubernetes key
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+
+    - name: Add Kubernetes apt_repository
+      apt_repository:
+        repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+        filename: kubernetes
+
+    - name: Install Kubernetes
+      apt:
+        name:
+        - kubelet=1.19.16-00
+        - kubeadm=1.19.16-00
+        - kubectl=1.19.16-00
+        state: present
+        update_cache: true
+
+- name: Confugure k8s-master
+  hosts: k8s-master
+  become: true
+  vars:
+    external_ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+  tasks:
+
+    - name: Install kubernetes master
+      shell: |
+              kubeadm init --apiserver-cert-extra-sans={{ external_ip }} --apiserver-advertise-address=0.0.0.0 \
+              --control-plane-endpoint={{ external_ip }} --pod-network-cidr=10.244.0.0/16
+
+    - name: Create .kube directory
+      become: yes
+      become_user: ubuntu
+      file:
+        path: $HOME/.kube
+        state: directory
+        mode: 0755
+
+    - name: Copy admin.conf to user's kube config
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /home/ubuntu/.kube/config
+        remote_src: yes
+        owner: ubuntu
+
+    - name: Copy Calico manifest
+      become_user: ubuntu
+      copy:
+        src: ./files/calico.yaml
+        dest: $HOME/calico.yaml
+        mode: '0644'
+
+    - name: Apply Calico
+      become_user: ubuntu
+      shell: kubectl apply -f $HOME/calico.yaml
+
+    - name: get join command
+      shell: kubeadm token create --print-join-command
+      register: join_command_raw
+
+    - name: set join command
+      set_fact:
+        join_command: "{{ join_command_raw.stdout_lines[0] }}"
+
+- name: Confugure k8s-worker
+  hosts: k8s-worker
+  become: yes
+  tasks:
+    - name: join cluster
+      shell: "{{ hostvars['k8s-master'].join_command }}"
