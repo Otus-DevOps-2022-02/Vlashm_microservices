@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jul 11 15:49:21 2022
+# Make data base, printed on Thu Jul 14 11:01:18 2022
 
 # Variables
 
@@ -41,11 +41,11 @@ CURDIR := /home/vlashm/_devops/otus/Vlashm_microservices
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{"*":"ru"},"_languagePackId":"4165c719fdf7a78444ed970b4565033b.ru","_translationsConfigFile":"/home/vlashm/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru/tcf.json","_cacheRoot":"/home/vlashm/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru","_resolvedLanguagePackCoreLocation":"/home/vlashm/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9","_corruptedFile":"/home/vlashm/.config/Code/clp/4165c719fdf7a78444ed970b4565033b.ru/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{"*":"ru"},"_languagePackId":"f1271d778ec77496b280bb178e5ed275.ru","_translationsConfigFile":"/home/vlashm/.config/Code/clp/f1271d778ec77496b280bb178e5ed275.ru/tcf.json","_cacheRoot":"/home/vlashm/.config/Code/clp/f1271d778ec77496b280bb178e5ed275.ru","_resolvedLanguagePackCoreLocation":"/home/vlashm/.config/Code/clp/f1271d778ec77496b280bb178e5ed275.ru/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9","_corruptedFile":"/home/vlashm/.config/Code/clp/f1271d778ec77496b280bb178e5ed275.ru/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:40285
+JOURNAL_STREAM = 8:38527
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -61,7 +61,7 @@ XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/d
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
-MANAGERPID = 1088
+MANAGERPID = 1066
 # environment
 VSCODE_CWD = /home/vlashm
 # default
@@ -73,7 +73,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/vlad-HP:@/tmp/.ICE-unix/1492,unix/vlad-HP:/tmp/.ICE-unix/1492
+SESSION_MANAGER = local/vlad-HP:@/tmp/.ICE-unix/1484,unix/vlad-HP:/tmp/.ICE-unix/1484
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -81,7 +81,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 90f9ab3fc021464a84d765d05a34e8d0
+INVOCATION_ID = b01cc7417cc746a99e902ad4735d79e6
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -91,7 +91,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 163013
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6822
 # automatic
 %F = $(notdir $%)
 # environment
@@ -101,7 +101,7 @@ PWD = /home/vlashm/_devops/otus/Vlashm_microservices
 # default
 .LOADED :=
 # environment
-SSH_AGENT_PID = 1457
+SSH_AGENT_PID = 1449
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -201,7 +201,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 163013
+VSCODE_PID = 6822
 # variable set hash-table stats:
 # Load=96/1024=9%, Rehash=0, Collisions=15/127=12%
 
@@ -278,8 +278,8 @@ build_prometheus:
 # % :=
 # automatic
 # * :=
-
 # automatic
+
 # + :=
 # automatic
 # | :=
@@ -419,4 +419,4 @@ build_comment_bugged:
 # strcache performance: lookups = 81 / hit rate = 49%
 # hash-table stats:
 # Load=41/8192=1%, Rehash=0, Collisions=1/81=1%
-# Finished Make data base on Mon Jul 11 15:49:22 2022
+# Finished Make data base on Thu Jul 14 11:01:18 2022
