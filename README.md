@@ -1,6 +1,57 @@
 # Vlashm_microservices
 Vlashm microservices repository
 
+## Домашнее задание 19
+
+- Созданы файлы с *Deployment* манифестами приложений
+- Установлены *Docker* и *k8s* на ВМ
+    - Установка *Docker*:
+
+                sudo apt-get update
+                sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+                sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable"
+                sudo apt-get update
+                sudo apt-get install -y docker-ce=5:19.03.15~3-0~ubuntu-bionic docker-ce-cli=5:19.03.15~3-0~ubuntu-bionic
+
+    - Установка *k8s*:
+
+                curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+                echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+                sudo apt-get update
+                sudo apt install -y kubelet=1.19.16-00 kubeadm=1.19.16-00 kubectl=1.19.16-00
+                sudo apt-mark hold kubelet kubeadm kubectl
+
+    - Инициализация master-ноды:
+
+                kubeadm init --apiserver-cert-extra-sans=<external_ip_master> \
+                --apiserver-advertise-address=0.0.0.0 \
+                --control-plane-endpoint=<external_ip_master> \
+                --pod-network-cidr=10.244.0.0/16
+
+    - Добавление work-ноды:
+
+                kubeadm join <external_ip_master>:6443 --token <token> \
+                    --discovery-token-ca-cert-hash sha256:<cert-hash>
+
+    - Для управления кластером через *kubectl*:
+
+                mkdir -p $HOME/.kube
+                sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+                sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+- Установлен плагин *Calico*:
+    - Загружен манифест на master-ноду
+    - В манифесте определена переменная *CALICO_IPV4POOL_CIDR*
+    - Применен манифест командо `kubectl apply -f calico.yaml`
+
+- Применены все магифесты reddit
+
+### Задание со *
+
+- В директорию *kubernetes/terraform* добавлины манифесты для поднятия виртуальных машин
+- В директорию *kubernetes/ansible* добавлены плэйбуки для установки *Docker* и поднятия кластера
+
 ## Домашнее задание 18
 
 - Обновлен код приложений
