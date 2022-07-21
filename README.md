@@ -1,6 +1,39 @@
 # Vlashm_microservices
 Vlashm microservices repository
 
+## Домашнее задание 20
+
+- Установлен *kubectl*
+- Установлен и запущен *Minikube*
+- Выполнены все шаги из дз для запуска приложения в локальном окружении
+- Для запуска *dashboard* в *minikube* используется команда `minikube dashboard`
+- Развернут кластер *Kubernetes* в Yandex Cloud
+- Для получения контекста кластера используется команда `yc managed-kubernetes cluster get-credentials <cluster-name> --external`
+- Запущены манифесты:
+
+                kubectl apply -f ./kubernetes/reddit/dev-namespace.yml
+                kubectl apply -f ./kubernetes/reddit/ -n dev
+
+- Получены адреса нод и порт сервиса приложения:
+
+                kubectl get nodes -o wide
+                kubectl describe service ui -n dev | grep NodePort
+
+- Cкриншот веб-интерфейса приложения в кластере:
+![](./img/1.png)
+![](./img/2.png)
+
+### Задание со *
+
+- В директории *kubernetes/terraform-k8s-yc* созданы манифесты для разворачивания кластера *Kubernetes* в Yandex Cloud
+- В директории *kubernetes/dashboard* созданы манифесты для подключения *dashboard*. Влючается командами:
+
+                kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
+                kubectl apply -f ./kubernetes/dashboard/admin-user.yml
+                kubectl apply -f ./kubernetes/dashboard/cluster-role.yml
+                kubectl -n kubernetes-dashboard create token admin-user
+                kubectl proxy
+
 ## Домашнее задание 19
 
 - Созданы файлы с *Deployment* манифестами приложений
