@@ -1,6 +1,27 @@
 # Vlashm_microservices
 Vlashm microservices repository
 
+## Домашнее задание 21
+
+- Развернут кластер *Kubernetes* в Yandex Cloud с помощью манифестов *terraform* из предыдущего дз.
+- Познакомился с сетевым взаимодействиев в *Kubernetes*
+- Установлен *Ingress* в Yandex Cloud
+- Написан и применен манифест *Ingress* для сервиса *UI*
+- Создан самоподписной сертификат TLS и загружен в *Kubernetes*
+- Добавлен и применен манифест *NetworkPolicy*
+- Создан диск в Yandex Cloud командой:
+
+                yc compute disk create \
+                --name k8s \
+                --size 4 \
+                --description "disk for k8s"
+
+- Созданы *PersitentVolume* и *PersistentVolumeClaim*
+
+### Задание со *
+
+Добавлен манифест для секрета сертификата
+
 ## Домашнее задание 20
 
 - Установлен *kubectl*
