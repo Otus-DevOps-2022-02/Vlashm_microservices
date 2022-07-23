@@ -22,3 +22,5 @@ build_info.txt
 .env
 
 .vscode
+
+tls.*
